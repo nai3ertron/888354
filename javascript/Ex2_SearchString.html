@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ex2-searchstring</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<center>
+	<table>
+		<tr>
+			<td>Ex2 - Search String Non Sensitive Case</td>
+		</tr>
+		<tr>
+			<td>
+				Text Input: <textarea id="data"></textarea> <br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Sensitive Case: <input type="radio" name="radio" value="yes">Yes <input type="radio" name="radio" value="no">No <br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Search: <input type="text" name="" id="input"/> <br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<button id="search">Search</button> <br>
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Result for search:<span id="result"></span>
+			</td>
+		</tr>
+	</table>
+</center>
+</body>
+</html>
+<script>
+$(document).ready(function() {
+	$("#search").click(function(event) {
+		var str_data = $("#data").val();
+		var str_input = $("#input").val();
+		var radio_check = $('input[name="radio"]:checked').val();
+		var i;
+		var count=0;
+		// console.log(radio_check);
+		// แบ่ง str_data เป็นคำ ๆ
+		var word = str_data.split(" ");
+		// วนตามจำนวนคำ
+		for(i=0 ; i<word.length ; i++){
+		// ถ้าไม่ Sensitive(NO) ให้ตัวอักษรทั้งหมดเป็นตัวเล็กและนับจำนวน
+			if(radio_check == "no"){
+				word[i] = word[i].toLowerCase();
+				str_input = str_input.toLowerCase();
+				count++;
+			}else if(word[i].search(str_input) > -1){
+		// ถ้า Yes ให้หาคำที่ใส่ไปในช่อง input จนกว่าจะหมด และนับจำนวนคำ
+				count++;
+			}
+		}
+	// แสดงจำนวนที่พบ
+	$("#result").html(count);
+
+	});
+});
+</script>
