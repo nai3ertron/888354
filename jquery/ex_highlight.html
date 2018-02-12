@@ -1,0 +1,58 @@
+<style>
+.box{
+  height:550px;
+  width:550px;
+}
+</style>
+<html>
+  <head>
+    <title>Highlight</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
+  </head>
+  <body>
+    <center>
+    <table>
+      <tr>
+        <td></td>
+        <td><h1>ex_highlight text</h1></td>
+      </tr>
+      <tr>
+        <td>Search</td>
+        <td>
+          <input type="text" id="search">
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <button type="button" name="button" id="sendSearch">search</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Found : </td>
+        <td id="numFound"></td>
+      </tr>
+    </table>
+  <div class="box">
+    <h1>The Article : Continuous Digital Health</h1>
+    <span id="found">
+      The way we deal with our health is undergoing a major transformation, not only because mobile Internet technology has made it possible to have continuous access to personal health information, but also because breaking the trend of ever-growing healthcare costs is increasingly necessary. Estimates indicate that more than 70 percent of the world population will have a smartphone by 2017. Connectivity, interoperability, sensing, and instant feedback through smartphones all provide new opportunities for gaining insights into our health behavior. Such insights are improving, and understanding what motivates people to make healthy changes throughout their lifetimes is becoming more important. Internet technology not only lets us continuously monitor an individual's physiological and psychological state, but also allows for building up a lifelong record of physical, mental, and social health.
+    </span>
+  </div>
+
+  </center>
+  </body>
+</html>
+<script>
+$(document).ready(function(){
+  $("#sendSearch").click(function(event) {
+    var wordSearch = $("#search").val();
+    // function mark เป็น search คำที่เจอแล้วทำการไฮไลท์
+    $("#found").unmark();
+    $("#found").mark(wordSearch);
+    // mark.length = หาว่าตัวที่ทำการ mark ไว้มีกี่ตัว
+    $("#numFound").html($('mark').length+" word");
+  });
+});
+</script>

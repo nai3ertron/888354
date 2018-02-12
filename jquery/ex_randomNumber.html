@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <title>Random</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <center>
+      <table>
+        <tr>
+          <td></td>
+          <td>
+            <h1>EX-RANDOM NUMBER FOR ANSWER</h1>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <button id="random"> Random Number</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p id="number"></p>
+          </td>
+          <td>
+            <input type="text" onKeyUp="if(isNaN(this.value)){ alert('กรุณากรอกตัวเลข'); this.value='';}" value="" id="result" required>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <button type="button" name="button" id="send">Send Answer</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Result :</td>
+          <td>
+            <p id="answer"></p>
+          </td>
+        </tr>
+      </table>
+    </center>
+  </body>
+</html>
+<script>
+$(document).ready(function() {
+  var minNumber = 0;
+  var maxNumber = 999;
+  var sum,num1,num2;
+    function randomNumberFromRange(min,max){
+      num1 = Math.floor(Math.random()*(max-min+1)+min);
+      num2 = Math.floor(Math.random()*(max-min+1)+min);
+      sum = num1 + num2;
+    }
+
+    $("#random").click(function(){
+      var randomNumber = randomNumberFromRange(minNumber, maxNumber);
+        // console.log(num1);
+      $("#number").html(num1+" + "+num2+" :");
+
+      $("#send").click(function(){
+        var resultInput = $("#result").val();
+         if(resultInput != sum){
+             $("#answer").html("<p style='color:red'>That's wrong.The answer is :"+sum+"</p>");
+         }else{
+            $("#answer").html("<p style='color:green'>That's correct.</p>");
+         }
+      });
+    });
+});
+</script>
